@@ -265,9 +265,17 @@ class GirthViewer3D {
   }
 
   loadModel() {
+    // 显示加载提示
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'model-loading';
+    loadingDiv.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#666;font-size:12px;z-index:10;';
+    loadingDiv.textContent = '加载围度模型...';
+    this.stage.appendChild(loadingDiv);
+
     this.loader.load(
       MODEL_URL,
       (object) => {
+        loadingDiv.remove();
         const material = new THREE.MeshStandardMaterial({
           color: 0xdcebff,
           emissive: 0xb9d4ff,
@@ -327,8 +335,10 @@ class GirthViewer3D {
         this.refreshAnnotations();
       },
       undefined,
-      () => {
+      (error) => {
+        loadingDiv.remove();
         this.canvasHost.dataset.modelError = "true";
+        console.error('Girth model load error:', error);
       }
     );
   }
