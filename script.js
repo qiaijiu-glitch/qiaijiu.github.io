@@ -122,7 +122,7 @@ const shoulderStateFigures = {
     },
   },
 };
-const shoulderSummaryFigure = "./assets/shoulder/shoulder-summary-custom.png";
+const shoulderSummaryFigure = "./assets/shoulder/shoulder-summary.png";
 
 const postureIssues = postureAnnotations;
 const postureOrderMap = new Map(postureIssues.map((item, index) => [item.id, index]));
@@ -1478,7 +1478,7 @@ const girthIconByName = Object.fromEntries(
     "右大腿最小围",
     "左小腿围",
     "右小腿围",
-  ].map((name) => [name, `/assets/girth-icons/${name}.png`])
+  ].map((name) => [name, `./assets/girth-icons/${name}.png`])
 );
 
 function girthDataCard(item, index, options = {}) {
