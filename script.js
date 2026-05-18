@@ -87,7 +87,7 @@ const compositionIcons = {
     down: "./assets/composition/卡片里的图标/数据变化/下降2.svg",
     flat: "./assets/composition/卡片里的图标/数据变化/不变1.svg",
   },
-  segmentFigure: "./assets/composition/节段分析/节段人物插图.png",
+  segmentFigure: "./assets/composition/节段分析/节段人物插图.svg",
   segmentDot: "./assets/composition/节段分析/标注点图标.svg",
 };
 
