@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>设备端报告 - 身体成分 Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="viewport-stage">
+    <main class="phone-shell" aria-label="设备端报告 Demo">
+      <div class="app-chrome">
+        <header class="status-bar" aria-hidden="true">
+          <span>18:32</span>
+          <span class="status-icons">
+            <img src="./assets/top-icons/Wifi.svg" alt="" />
+            <img src="./assets/top-icons/有限网络.svg" alt="" />
+            <img src="./assets/top-icons/手势识别.svg" alt="" />
+            <img src="./assets/top-icons/打印.svg" alt="" />
+          </span>
+        </header>
+
+        <section class="app-screen">
+          <div class="top-row">
+            <button class="back-btn" type="button" aria-label="返回">
+              <img src="./assets/top-icons/返回.svg" alt="" />
+              返回
+            </button>
+            <div class="tool-icons">
+              <img src="./assets/top-icons/画笔.svg" alt="" />
+              <img src="./assets/top-icons/橡皮擦.svg" alt="" />
+              <img src="./assets/top-icons/退出.svg" alt="" />
+              <button class="user-trigger" type="button" data-user-toggle aria-label="查看用户信息">
+                <span class="user-trigger-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="user-popover" data-user-popover hidden>
+            <div class="user-popover-arrow" aria-hidden="true"></div>
+            <div class="user-popover-card">
+              <div class="user-popover-head">
+                <strong>用户信息</strong>
+                <button type="button" data-user-close aria-label="关闭">×</button>
+              </div>
+              <div class="user-popover-list">
+                <div><span class="user-popover-label">ID</span><b>hassie.ratkle@gmail.com</b></div>
+                <div><span class="user-popover-label">性别</span><b>女</b></div>
+                <div><span class="user-popover-label">身高</span><b>168 cm</b></div>
+                <div><span class="user-popover-label">年龄</span><b>26 岁</b></div>
+              </div>
+            </div>
+          </div>
+
+          <nav id="reportTabs" class="tabs" aria-label="报告分类"></nav>
+        </section>
+      </div>
+
+      <section class="app-content">
+        <section class="score-card score-summary-card">
+          <div class="score-ring" aria-label="身体成分 80 分">
+            <svg viewBox="0 0 120 72" role="img">
+              <defs>
+                <linearGradient id="compositionScoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#2F80FF"></stop>
+                  <stop offset="100%" stop-color="#9B8CFF"></stop>
+                </linearGradient>
+              </defs>
+              <path class="ring-bg" pathLength="100" d="M 14 58 A 46 46 0 0 1 106 58"></path>
+              <path class="ring-progress composition-ring-progress" pathLength="100" d="M 14 58 A 46 46 0 0 1 106 58"></path>
+            </svg>
+            <div>
+              <strong data-composition-score-value>80</strong>
+              <span>分</span>
+            </div>
+          </div>
+          <div class="score-copy score-copy-static">
+            <time class="score-datetime" datetime="2025-01-21T15:16">检测时间：2025-01-21 15:16</time>
+            <p class="score-note">*身体成分分数规则已于 {date} 更新!</p>
+          </div>
+        </section>
+
+        <div id="tabContent" class="tab-content" aria-live="polite"></div>
+      </section>
+    </main>
+    </div>
+
+    <div class="modal-layer" id="metricModal" aria-hidden="true">
+      <div class="modal-scrim" data-close-modal></div>
+      <section class="metric-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" data-close-modal aria-label="关闭">×</button>
+        <h2 id="modalTitle"><span class="mini-icon">◒</span><span data-modal-name>体重</span></h2>
+
+        <div class="modal-value">
+          <strong data-modal-value>73.2</strong>
+          <span data-modal-unit>kg</span>
+          <em data-modal-change>↑ 5.8</em>
+        </div>
+        <p class="modal-status" data-modal-status>标准</p>
+
+        <div class="range-block">
+          <div class="range-labels">
+            <span data-low-limit>58</span>
+            <span data-high-limit>85</span>
+          </div>
+          <div class="range-bar" data-modal-range data-active="normal">
+            <span class="low is-active" data-range-segment="low"></span>
+            <span class="normal" data-range-segment="normal"></span>
+            <span class="high" data-range-segment="high"></span>
+            <i data-modal-pointer></i>
+          </div>
+          <div class="range-names">
+            <span class="segment-status-text--low is-active" data-range-name="low">低标准</span>
+            <span class="segment-status-text--normal" data-range-name="normal">标准</span>
+            <span class="segment-status-text--high" data-range-name="high">超标准</span>
+          </div>
+        </div>
+
+        <div class="trend-chart" aria-label="历史趋势图">
+          <svg viewBox="0 0 640 250" preserveAspectRatio="none">
+            <line x1="0" y1="55" x2="640" y2="55" />
+            <line x1="0" y1="125" x2="640" y2="125" />
+            <line x1="0" y1="195" x2="640" y2="195" />
+            <path class="area" data-chart-area d=""></path>
+            <path class="line" data-chart-line d=""></path>
+            <g data-chart-points></g>
+          </svg>
+          <div class="trend-dates">
+            <span>05-24<br />2025</span>
+            <span>08-24</span>
+            <span>11-19</span>
+            <span>01-22<br />2026</span>
+            <span>01-24</span>
+            <span>02-21</span>
+          </div>
+        </div>
+
+        <p class="modal-desc" data-modal-desc>
+          体重：这里是体重的解释文案这里是体重的解释文案这里是体重的解释文案。
+        </p>
+
+        <div class="modal-actions">
+          <button type="button" data-prev-card>上一项</button>
+          <button type="button" data-next-card>下一项</button>
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="./posture-3d-viewer.js"></script>
+    <script type="module" src="./girth-3d-viewer.js"></script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
